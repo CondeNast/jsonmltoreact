@@ -141,6 +141,31 @@ export const reactHTMLTags = [
 
 
 /**
+ * List of "void element" tags
+ * lifted from React source
+ * https://github.com/facebook/react/blob/6a659606415d4853026df6e6d525274fdc7d35ea/src/renderers/dom/shared/ReactDOMComponent.js#L443
+ */
+export const voidElementTags = {
+  area: true,
+  base: true,
+  br: true,
+  col: true,
+  embed: true,
+  hr: true,
+  img: true,
+  input: true,
+  keygen: true,
+  link: true,
+  meta: true,
+  param: true,
+  source: true,
+  track: true,
+  wbr: true,
+  menuitem: true
+};
+
+
+/**
  * Object with converters for the React tags
  */
 export const reactConverters = reactHTMLTags.reduce((acc, type) => {
