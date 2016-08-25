@@ -44,6 +44,15 @@ describe('JsonmlToReact class', function () {
       expect(result).to.be.equal(leaf);
     });
 
+    it('returns a component without children if void element', () => {
+      let node = ['hr'];
+      let result = jsonmlToReact._visit(node);
+
+      expect(result.type).to.be.a('string');
+      expect(result.type).to.be.equal('hr');
+      expect(result.children).to.not.exist;
+    });
+
     it('returns component with `type` as string, equals to node tag if node is HTML tag', () => {
       let node = ['a'];
       let result = jsonmlToReact._visit(node);

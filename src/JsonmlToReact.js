@@ -4,7 +4,8 @@ import isFunction from 'lodash.isfunction';
 
 import {
   reactConverters,
-  toStyleObject
+  toStyleObject,
+  voidElementTags
 } from './utils';
 
 
@@ -47,8 +48,6 @@ export default class JsonmlToReact {
     }
 
     const tag = JsonML.getTagName(node);
-    const children = JsonML.getChildren(node) || [];
-
     const converter = this.converters[tag];
     const result = isFunction(converter) ? converter(attrs, data) : {};
 
@@ -57,6 +56,13 @@ export default class JsonmlToReact {
 
     // reassign key in case `converter` removed it
     props.key = props.key || index;
+
+    // If it's a void element, don't create children
+    if (voidElementTags[type]) {
+      return React.createElement(tag, props);
+    }
+
+    const children = JsonML.getChildren(node) || [];
 
     return React.createElement(type, props, children.map((child, index) => this._visit(child, index, data)));
   }
