@@ -1,6 +1,6 @@
 {
-  "name": "jsonmltoreact",
-  "version": "0.0.8",
+  "name": "@condenast/jsonmltoreact",
+  "version": "0.1.0",
   "description": "JsonML to React component converter",
   "main": "./lib/index.js",
   "scripts": {
@@ -15,16 +15,11 @@
     "pretest": "npm run lint",
     "test": "NODE_ENV=test nyc mocha"
   },
-  "author": "@diffcunha",
   "repository": {
     "type": "git",
-    "url": "git://github.com/diffcunha/jsonmltoreact.git"
+    "url": "https://github.com/CondeNast/jsonmltoreact"
   },
   "license": "MIT",
-  "keywords": [
-    "JsonML",
-    "React"
-  ],
   "dependencies": {
     "jsonml.js": "^0.1.0",
     "lodash.camelcase": "^4.1.1",
