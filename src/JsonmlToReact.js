@@ -64,7 +64,7 @@ export default class JsonmlToReact {
 
     const children = JsonML.getChildren(node) || [];
 
-    return React.createElement(type, props, children.map((child, index) => this._visit(child, index, data)));
+    return React.createElement(type, props, ...children.map((child, index) => this._visit(child, index, data)));
   }
 
   /**
