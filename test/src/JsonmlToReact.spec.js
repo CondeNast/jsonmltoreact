@@ -149,4 +149,19 @@ describe('JsonmlToReact class', function () {
       jsonmlToReact._visit.restore();
     });
   });
+
+  describe('React.createElement', () => {
+    it('should call children as arguments', () => {
+      let spy = sinon.spy(ReactMock, 'createElement');
+
+      let node = ['p', {}, 'i am a text node'];
+
+      jsonmlToReact.convert(node);
+
+      expect(spy.calledWith('p', { key: 0 }, 'i am a text node')).to.be.true;
+
+      ReactMock.createElement.restore();
+    });
+  });
+
 });
