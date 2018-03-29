@@ -134,6 +134,13 @@ describe('JsonmlToReact class', function () {
 
       jsonmlToReact._visit.restore();
     });
+
+    it('doesn\'t mutate the raw attributes', function () {
+      const attributes = { style: 'display: block; color: #fff;' };
+      const node = ['a', attributes];
+      jsonmlToReact._visit(node, 987);
+      expect(attributes).to.deep.equal({ style: 'display: block; color: #fff;' });
+    });
   });
 
   describe('convert method', () => {
@@ -155,18 +162,30 @@ describe('JsonmlToReact class', function () {
       let spy = sinon.spy(ReactMock, 'createElement');
 
       let node = ['p', {}, 'i am a text node'];
-
-      jsonmlToReact.convert(node);
-
-      expect(spy.calledWith('p', {
+      const expectedAttributes = {
         className: undefined,
         class: undefined,
         key: 0,
         style: undefined
-      }, 'i am a text node')).to.be.true;
+      };
 
+      jsonmlToReact.convert(node);
+      expect(spy.calledWith('p', expectedAttributes, 'i am a text node')).to.be.true;
       ReactMock.createElement.restore();
     });
   });
 
+  describe('converters', () => {
+    it('are called with the raw attributes and \'data\'', function () {
+      const attributes = { style: 'display: block; color: #fff;' };
+      const data = { something: Math.random() };
+      const node = ['test-tag-with-data', attributes];
+
+      const spy = sinon.spy(jsonmlToReact.converters, 'test-tag-with-data');
+      jsonmlToReact.convert(node, data);
+
+      sinon.assert.calledWith(spy, attributes, data);
+      spy.restore();
+    });
+  });
 });

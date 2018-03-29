@@ -14,7 +14,7 @@
     "prepush": "npm test",
     "pretest": "npm run lint",
     "test": "NODE_ENV=test nyc mocha",
-    "tdd": "NODE_ENV=test nyc mocha --watch"
+    "tdd": "NODE_ENV=test nyc mocha --watch --break"
   },
   "repository": {
     "type": "git",
