@@ -158,7 +158,12 @@ describe('JsonmlToReact class', function () {
 
       jsonmlToReact.convert(node);
 
-      expect(spy.calledWith('p', { key: 0 }, 'i am a text node')).to.be.true;
+      expect(spy.calledWith('p', {
+        className: undefined,
+        class: undefined,
+        key: 0,
+        style: undefined
+      }, 'i am a text node')).to.be.true;
 
       ReactMock.createElement.restore();
     });
