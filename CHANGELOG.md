@@ -2,6 +2,10 @@
 
 * n/a
 
+### 1.0.0 (2018-03-29)
+
+* Avoid mutating the inputs
+
 ### 0.1.1 (2017-09-26)
 
 * React components' children are no longer wrapped in an array,
