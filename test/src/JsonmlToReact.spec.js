@@ -1,4 +1,7 @@
-import sinon from 'sinon';
+import {
+  assert as sinonAssert,
+  sandbox as sinonSandbox
+}  from 'sinon';
 import { expect } from 'chai';
 
 import JsonmlToReact from '../../src/JsonmlToReact';
@@ -24,6 +27,16 @@ const converters = {
 };
 
 describe('JsonmlToReact class', function () {
+  let sandbox;
+
+  before(function () {
+    sandbox = sinonSandbox.create();
+  });
+
+  afterEach(function () {
+    sandbox.restore();
+  });
+
   let jsonmlToReact = new JsonmlToReact(converters);
 
   it('exports a module', function () {
@@ -125,7 +138,7 @@ describe('JsonmlToReact class', function () {
     });
 
     it('to be called once for every node', () => {
-      let spy = sinon.spy(jsonmlToReact, '_visit');
+      let spy = sandbox.spy(jsonmlToReact, '_visit');
 
       let node = ['a', ['a', 'leaf'], ['a', 'leaf']];
       jsonmlToReact._visit(node);
@@ -134,11 +147,18 @@ describe('JsonmlToReact class', function () {
 
       jsonmlToReact._visit.restore();
     });
+
+    it('doesn\'t mutate the raw attributes', function () {
+      const attributes = { style: 'display: block; color: #fff;' };
+      const node = ['a', attributes];
+      jsonmlToReact._visit(node, 987);
+      expect(attributes).to.deep.equal({ style: 'display: block; color: #fff;' });
+    });
   });
 
   describe('convert method', () => {
     it('should call _visit with `node`, 0 and `data` as parameters', () => {
-      let spy = sinon.spy(jsonmlToReact, '_visit');
+      let spy = sandbox.spy(jsonmlToReact, '_visit');
 
       let node = ['a'];
       let data = { data1: 'data1' };
@@ -152,16 +172,32 @@ describe('JsonmlToReact class', function () {
 
   describe('React.createElement', () => {
     it('should call children as arguments', () => {
-      let spy = sinon.spy(ReactMock, 'createElement');
+      let spy = sandbox.spy(ReactMock, 'createElement');
 
       let node = ['p', {}, 'i am a text node'];
+      const expectedAttributes = {
+        className: undefined,
+        class: undefined,
+        key: 0,
+        style: undefined
+      };
 
       jsonmlToReact.convert(node);
-
-      expect(spy.calledWith('p', { key: 0 }, 'i am a text node')).to.be.true;
-
+      expect(spy.calledWith('p', expectedAttributes, 'i am a text node')).to.be.true;
       ReactMock.createElement.restore();
     });
   });
 
+  describe('converters', () => {
+    it('are called with the raw attributes and \'data\'', function () {
+      const attributes = { style: 'display: block; color: #fff;' };
+      const data = { something: Math.random() };
+      const node = ['test-tag-with-data', attributes];
+
+      const spy = sandbox.spy(jsonmlToReact.converters, 'test-tag-with-data');
+      jsonmlToReact.convert(node, data);
+
+      sinonAssert.calledWith(spy, attributes, data);
+    });
+  });
 });
