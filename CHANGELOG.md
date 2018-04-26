@@ -1,3 +1,7 @@
+### 2.0.0 (2018-04-26)
+
+* Remove React 14/15 as a peer dependency
+
 ### 1.1.0 (2018-04-26)
 
 * Allow React 16 as a peer dependency
