@@ -1,6 +1,6 @@
-### Unreleased
+### 1.1.0 (2018-04-26)
 
-* n/a
+* Allow React 16 as a peer dependency
 
 ### 1.0.0 (2018-03-29)
 
