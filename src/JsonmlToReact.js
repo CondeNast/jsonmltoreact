@@ -3,6 +3,7 @@ import JsonML from 'jsonml.js/lib/utils';
 import isFunction from 'lodash.isfunction';
 
 import {
+  filter,
   reactConverters,
   toStyleObject,
   voidElementTags
@@ -43,9 +44,8 @@ export default class JsonmlToReact {
 
     const type = result.type || tag;
     const resultProps = result.props || rawAttrs || {};
-    const props = Object.assign({}, resultProps, {
+    const props = Object.assign({}, filter(resultProps, key => key !== 'class'), {
       className: resultProps.className || resultProps.class,
-      class: undefined,
       key: index,
       style: rawAttrs.style && toStyleObject(rawAttrs.style)
     });

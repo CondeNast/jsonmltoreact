@@ -177,7 +177,6 @@ describe('JsonmlToReact class', function () {
       let node = ['p', {}, 'i am a text node'];
       const expectedAttributes = {
         className: undefined,
-        class: undefined,
         key: 0,
         style: undefined
       };

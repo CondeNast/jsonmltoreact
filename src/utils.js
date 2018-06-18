@@ -1,5 +1,20 @@
 import camelCase from 'lodash.camelcase';
 
+/**
+ * Returns a copy of an object, with specific keys omitted
+ *
+ * @param {Object} obj - Source object
+ * @param {Function} filterFn - function to check if a key/val pair should be retained
+ * @returns {Object} a new object omitting keys
+ */
+export function filter(obj, filterFn) {
+  return Object.keys(obj).reduce((acc, key) => {
+    if (filterFn(key, obj[key])) {
+      acc[key] = obj[key];
+    }
+    return acc;
+  }, {});
+}
 
 /**
  * React HTML tags
