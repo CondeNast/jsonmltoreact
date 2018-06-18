@@ -1,4 +1,4 @@
-### 2.1.0 (2018-06-18)
+### 2.0.1 (2018-06-18)
 
 * Clean up `class` prop in React elements (#14)
 
