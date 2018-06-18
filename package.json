@@ -1,6 +1,6 @@
 {
   "name": "@condenast/jsonmltoreact",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "JsonML to React component converter",
   "main": "./lib/index.js",
   "scripts": {
