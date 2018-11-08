@@ -1,5 +1,5 @@
 import React from 'react';
-import JsonML from 'jsonml.js/lib/utils';
+import JsonML from '@condenast/jsonml.js/lib/utils';
 import isFunction from 'lodash.isfunction';
 
 import {
