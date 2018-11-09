@@ -1,3 +1,5 @@
+* Update @condenast/jsonml.js to version 1.0.1 to fix es5-compatibility
+
 ### 2.1.0 (2018-11-08)
 
 * Switch to Conde Nast fork of jsonml.js (#16)
