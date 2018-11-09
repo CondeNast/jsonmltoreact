@@ -22,7 +22,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@condenast/jsonml.js": "^1.0.0",
+    "@condenast/jsonml.js": "^1.0.1",
     "lodash.camelcase": "^4.1.1",
     "lodash.isfunction": "^3.0.8"
   },
