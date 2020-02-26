@@ -1,8 +1,5 @@
-import {
-  assert as sinonAssert,
-  sandbox as sinonSandbox
-}  from 'sinon';
 import { expect } from 'chai';
+import sinon  from 'sinon';
 
 import JsonmlToReact from '../../src/JsonmlToReact';
 
@@ -27,14 +24,8 @@ const converters = {
 };
 
 describe('JsonmlToReact class', function () {
-  let sandbox;
-
-  before(function () {
-    sandbox = sinonSandbox.create();
-  });
-
   afterEach(function () {
-    sandbox.restore();
+    sinon.restore();
   });
 
   let jsonmlToReact = new JsonmlToReact(converters);
@@ -138,7 +129,7 @@ describe('JsonmlToReact class', function () {
     });
 
     it('to be called once for every node', () => {
-      let spy = sandbox.spy(jsonmlToReact, '_visit');
+      let spy = sinon.spy(jsonmlToReact, '_visit');
 
       let node = ['a', ['a', 'leaf'], ['a', 'leaf']];
       jsonmlToReact._visit(node);
@@ -158,7 +149,7 @@ describe('JsonmlToReact class', function () {
 
   describe('convert method', () => {
     it('should call _visit with `node`, 0 and `data` as parameters', () => {
-      let spy = sandbox.spy(jsonmlToReact, '_visit');
+      let spy = sinon.spy(jsonmlToReact, '_visit');
 
       let node = ['a'];
       let data = { data1: 'data1' };
@@ -172,7 +163,7 @@ describe('JsonmlToReact class', function () {
 
   describe('React.createElement', () => {
     it('should call children as arguments', () => {
-      let spy = sandbox.spy(ReactMock, 'createElement');
+      let spy = sinon.spy(ReactMock, 'createElement');
 
       let node = ['p', {}, 'i am a text node'];
       const expectedAttributes = {
@@ -193,10 +184,10 @@ describe('JsonmlToReact class', function () {
       const data = { something: Math.random() };
       const node = ['test-tag-with-data', attributes];
 
-      const spy = sandbox.spy(jsonmlToReact.converters, 'test-tag-with-data');
+      const spy = sinon.spy(jsonmlToReact.converters, 'test-tag-with-data');
       jsonmlToReact.convert(node, data);
 
-      sinonAssert.calledWith(spy, attributes, data);
+      sinon.assert.calledWith(spy, attributes, data);
     });
   });
 });
