@@ -1,3 +1,8 @@
+### Unreleased
+
+#### Chores
+* Update babel packages to @babel scope and v7
+
 ### 2.1.1 (2018-11-09)
 
 * Update @condenast/jsonml.js to version 1.0.1 to fix es5-compatibility
