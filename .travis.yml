@@ -7,6 +7,12 @@ node_js:
 notifications:
   email: false
 
+# Enable builds on limited branches
+branches:
+  only:
+  - master
+  - /release\/\d{1,2}\.x/
+
 before_install:
   - npm config set //registry.npmjs.org/:_authToken=$npm_config__auth
 
