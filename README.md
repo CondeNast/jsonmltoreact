@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/CondeNast/jsonmltoreact.svg?branch=master)](https://travis-ci.org/CondeNast/jsonmltoreact)
 [![Code Climate](https://codeclimate.com/github/diffcunha/jsonmltoreact/badges/gpa.svg)](https://codeclimate.com/github/diffcunha/jsonmltoreact)
-[![Test Coverage](https://codeclimate.com/github/diffcunha/jsonmltoreact/badges/coverage.svg)](https://codeclimate.com/github/diffcunha/jsonmltoreact/coverage)
+[![Coverage Status](https://coveralls.io/repos/github/CondeNast/jsonmltoreact/badge.svg?branch=master)](https://coveralls.io/github/CondeNast/jsonmltoreact?branch=master)
 
 # jsonmltoreact
 JsonML to React converter
