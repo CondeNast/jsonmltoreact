@@ -1,0 +1,26 @@
+language: node_js
+node_js:
+  - "10"
+  - "12"
+
+notifications:
+  email: false
+
+# Enable builds on limited branches
+branches:
+  only:
+  - master
+  - /release\/\d{1,2}\.x/
+
+before_install:
+  - npm config set //registry.npmjs.org/:_authToken=$npm_config__auth
+
+install:
+  - npm install --always-auth=true
+
+script:
+  - npm test
+
+after_success:
+  # Deploy coverage reports to Coveralls for node 12 run
+  - if [[ $(node -v) == v12* ]]; then npm install coveralls; ./node_modules/.bin/coveralls < coverage/lcov.info; fi

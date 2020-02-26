@@ -1,8 +1,9 @@
 import React from 'react';
-import JsonML from 'jsonml.js/lib/utils';
+import JsonML from '@condenast/jsonml.js/dist/utils';
 import isFunction from 'lodash/isFunction';
 
 import {
+  filter,
   reactConverters,
   toStyleObject,
   voidElementTags
@@ -36,26 +37,18 @@ export default class JsonmlToReact {
       return node;
     }
 
-    let attrs = Object.assign({ key: index }, JsonML.getAttributes(node));
-
-    if (attrs.class) {
-      attrs.className = attrs.class;
-      attrs.class = undefined;
-    }
-
-    if (attrs.style) {
-      attrs.style = toStyleObject(attrs.style);
-    }
-
+    const rawAttrs = Object.assign({}, JsonML.getAttributes(node));
     const tag = JsonML.getTagName(node);
     const converter = this.converters[tag];
-    const result = isFunction(converter) ? converter(attrs, data) : {};
+    const result = isFunction(converter) ? converter(rawAttrs, data) : {};
 
     const type = result.type || tag;
-    const props = result.props || attrs;
-
-    // reassign key in case `converter` removed it
-    props.key = props.key || index;
+    const resultProps = result.props || rawAttrs || {};
+    const props = Object.assign({}, filter(resultProps, key => key !== 'class'), {
+      className: resultProps.className || resultProps.class,
+      key: index,
+      style: rawAttrs.style && toStyleObject(rawAttrs.style)
+    });
 
     // If it's a void element, don't create children
     if (voidElementTags[type]) {
