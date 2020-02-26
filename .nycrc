@@ -1,0 +1,14 @@
+{
+  "reporter": [
+    "lcov",
+    "text"
+  ],
+  "include": [
+    "src/**/*.js"
+  ],
+  "require": [
+    "@babel/register"
+  ],
+  "sourceMap": true,
+  "instrument": true
+}
