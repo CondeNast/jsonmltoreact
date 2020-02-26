@@ -1,6 +1,6 @@
 import React from 'react';
 import JsonML from '@condenast/jsonml.js/dist/utils';
-import isFunction from 'lodash.isfunction';
+import isFunction from 'lodash/isFunction';
 
 import {
   filter,

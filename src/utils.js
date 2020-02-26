@@ -1,4 +1,4 @@
-import camelCase from 'lodash.camelcase';
+import camelCase from 'lodash/camelCase';
 
 /**
  * Returns a copy of an object, with specific keys omitted

@@ -21,8 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "@condenast/jsonml.js": "^1.0.1",
-    "lodash.camelcase": "^4.1.1",
-    "lodash.isfunction": "^3.0.8"
+    "lodash": "^4.14.1"
   },
   "peerDependencies": {
     "react": "^16.0.0"
