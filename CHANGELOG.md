@@ -1,7 +1,12 @@
 ### Unreleased
 
+### 2.2.0 (2020-02-26)
+#### Changes
+* Use main lodash instead of separate packages per function (#7)
+
 #### Chores
 * Update babel packages to @babel scope and v7
+* Update major dev deps (#21)
 
 ### 2.1.1 (2018-11-09)
 
