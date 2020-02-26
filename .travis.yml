@@ -1,8 +1,7 @@
 language: node_js
 node_js:
-  - "6"
-  - "8"
   - "10"
+  - "12"
 
 notifications:
   email: false
@@ -23,5 +22,5 @@ script:
   - npm test
 
 after_success:
-  # Deploy coverage reports to Coveralls for node 10 run
-  - if [[ $(node -v) == v10* ]]; then npm install coveralls; ./node_modules/.bin/coveralls < coverage/lcov.info; fi
+  # Deploy coverage reports to Coveralls for node 12 run
+  - if [[ $(node -v) == v12* ]]; then npm install coveralls; ./node_modules/.bin/coveralls < coverage/lcov.info; fi
