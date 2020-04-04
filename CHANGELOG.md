@@ -1,5 +1,9 @@
 ### Unreleased
 
+### 2.3.0 (2020-04-04)
+#### Changes
+* Update dependency @condenast/jsonml.js to v2 (#60)
+
 ### 2.2.0 (2020-02-26)
 #### Changes
 * Use main lodash instead of separate packages per function (#7)
