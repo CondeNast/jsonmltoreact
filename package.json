@@ -20,7 +20,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@condenast/jsonml.js": "^1.0.1",
+    "@condenast/jsonml.js": "^2.0.0",
     "lodash": "^4.14.1"
   },
   "peerDependencies": {
